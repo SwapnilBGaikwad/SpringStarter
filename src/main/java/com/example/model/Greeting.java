@@ -1,28 +1,20 @@
 package com.example.model;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Greeting {
+    @Value("${welcome.message}")
+    private String message;
     private int no;
-    private String s;
 
-    public Greeting() {
-    }
-
-    public Greeting(int no) {
+    public void setNumber(int no) {
         this.no = no;
     }
 
-    public Greeting(String s) {
-        this.s = s;
-    }
-
-    public String getName() {
-        if (s != null) {
-            return s;
-        }
-        return "Greetings from Spring Boot! fact " + fact(no);
+    public String getNumber() {
+        return message + " " + fact(no);
     }
 
     private int fact(int no) {
@@ -31,10 +23,5 @@ public class Greeting {
             res *= i;
         }
         return res;
-    }
-
-    @Override
-    public String toString() {
-        return "toString";
     }
 }
